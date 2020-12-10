@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.NotifyMapper">
+
+    <select id="selectNotifiesByNtoNtype" parameterType="Notify" resultType="Notify">
+        select * from notify where nto=#{nto} and ntype=#{ntype};
+    </select>
+
+    <select id="selectNotifiesByRole" parameterType="String" resultType="Notify">
+        select * from notify where ntoRole=#{ntoRole};
+    </select>
+
+    <insert id="insertNotify" parameterType="Notify">
+        insert into notify(nfrom,nfromName,nto,ntoName,ntoRole,ncourse,ncourseName,ncourseTaccount,ncourseTeacher,ncontent,nstate,ntype) values(#{nfrom},#{nfromName},#{nto},#{ntoName},#{ntoRole},#{ncourse},#{ncourseName},#{ncourseTaccount},#{ncourseTeacher},#{ncontent},#{nstate},#{ntype});
+    </insert>
+
+    <delete id="deleteNotifyByNno" parameterType="Integer">
+        delete from notify where nno=#{nno};
+    </delete>
+
+    <update id="updateNotifyByNno" parameterType="Notify">
+        update notify
+        <set>
+            <if test="nstate!=null and nstate!=''">
+                nstate=#{nstate},
+            </if>
+        </set>
+        where nno=#{nno};
+    </update>
+
+    <select id="selectNotifyToAdmin" parameterType="Notify" resultType="Notify">
+        select * from notify where nfrom=#{nfrom} and nfromName=#{nfromName}
+        and ntoRole=#{ntoRole} and ncourse=#{ncourse} and ncourseName=#{ncourseName}
+        and ncourseTaccount=#{ncourseTaccount} and ncourseTeacher=#{ncourseTeacher}
+        and ncontent=#{ncontent} and nstate=#{nstate};
+    </select>
+
+    <select id="selectNotifyToTeacher" parameterType="Notify" resultType="Notify">
+        select * from notify where nfrom=#{nfrom} and nfromName=#{nfromName}
+        and nto=#{nto} and ntoName=#{ntoName} and ncourse=#{ncourse}
+        and ncontent=#{ncontent} and nstate=#{nstate};
+    </select>
+
+</mapper>

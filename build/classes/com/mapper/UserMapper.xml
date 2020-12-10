@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.UserMapper">
+
+    <select id="selectUserByUaccount" parameterType="String" resultType="User">
+        select * from user where uaccount=#{uaccount};
+    </select>
+
+    <select id="selectAllUsers" resultType="User">
+        select * from user;
+    </select>
+
+    <select id="selectUsersByUrole" resultType="User">
+        select * from user where urole=#{urole};
+    </select>
+
+    <update id="updateUser" parameterType="User">
+        update user
+        <set>
+          <if test="upwd!=null and upwd!=''">
+            upwd=#{upwd},
+          </if>
+          <if test="uname!=null and uname!=''">
+            uname=#{uname},
+          </if>
+            <if test="usex!=null and usex!=''">
+                usex=#{usex},
+            </if>
+            <if test="urole!=null and urole!=''">
+                urole=#{urole},
+            </if>
+          <if test="uphone!=null and uphone!=''">
+            uphone=#{uphone},
+          </if>
+
+        </set>
+        where uaccount=#{uaccount};
+    </update>
+    
+    <insert id="addUser" parameterType="User">
+        insert into user(uaccount,upwd,uname,usex,urole,uphone) values(#{uaccount},#{upwd},#{uname},#{usex},#{urole},#{uphone});
+    </insert>
+
+    <delete id="deleteUserByUaccount" parameterType="String">
+        delete from user where uaccount=#{uaccount};
+    </delete>
+</mapper>

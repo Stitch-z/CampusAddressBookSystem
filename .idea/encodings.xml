@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/com/controller/AccountsController.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/controller/BlackController.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/controller/CourseController.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/controller/LiaisonController.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/controller/NotifyController.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/controller/UserController.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/mapper/AccountsMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/mapper/BlackMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/mapper/CourseMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/mapper/LiaisonMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/mapper/NotifyMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/po/Accounts.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/po/Black.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/po/Care.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/po/History.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/po/Liaison.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/po/User.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/service/AccountsService.java" charset="GBK" />
+  </component>
+</project>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.AccountsMapper">
+
+    <select id="selectAccountsByAccountByPwd" parameterType="map" resultType="Accounts">
+        select * from accounts where account=#{account} and pwd=#{pwd};
+    </select>
+    
+    <select id="selectAccountsByAccount" parameterType="String" resultType="Accounts">
+        select * from accounts where account=#{account};
+    </select>
+
+    <select id="deleteAccount" parameterType="String">
+        delete from accounts where account=#{account};
+    </select>
+    
+    <insert id="addAccounts" parameterType="Accounts">
+        insert into accounts(account,pwd,role) values(#{account},#{pwd},#{role});
+    </insert>
+
+    <update id="updatePassword" parameterType="Accounts">
+        update accounts
+        <set>
+            <if test="pwd!=null and pwd!=''">
+                pwd=#{pwd},
+            </if>
+        </set>
+        where account=#{account};
+    </update>
+
+    <update id="updateAccounts" parameterType="Accounts">
+        update accounts
+        <set>
+            <if test="role!=null and role!=''">
+                role=#{role},
+            </if>
+        </set>
+        where account=#{account};
+    </update>
+</mapper>

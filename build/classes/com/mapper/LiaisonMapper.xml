@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.LiaisonMapper">
+    <select id="selectLiaisonsByAccountRole" parameterType="Liaison" resultType="Liaison">
+        select * from liaison where laccount=#{laccount} and lrole=#{lrole};
+    </select>
+
+    <select id="selectLiaisonByLaccountLnumber" parameterType="Liaison" resultType="Liaison">
+        select * from liaison where laccount=#{laccount} and lnumber=#{lnumber};
+    </select>
+<!--
+    <select id="selectLiaisonByLnumber" parameterType="String" resultType="Liaison">
+        select * from liaison where lnumber=#{lnumber};
+    </select>
+    -->
+    <select id="selectLiaisonByLaccountLnameLrole" parameterType="Liaison" resultType="Liaison">
+        <bind name="lname" value="'%'+lname+'%'" />
+        select * from liaison
+        <where>
+            <if test="lname!=null and lname!=''">
+                and lname like #{lname}
+            </if>
+            <if test="laccount!=null and laccount!=''">
+                and laccount=#{laccount}
+            </if>
+            <if test="lrole!=null and lrole!=''">
+                and lrole=#{lrole}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectLiaisonByLaccountLphoneLrole" parameterType="Liaison" resultType="Liaison">
+        <bind name="lphone" value="'%'+lphone+'%'" />
+        select * from liaison
+        <where>
+            <if test="lphone!=null and lphone!=''">
+                and lphone like #{lphone}
+            </if>
+            <if test="laccount!=null and laccount!=''">
+                and laccount=#{laccount}
+            </if>
+            <if test="lrole!=null and lrole!=''">
+                and lrole=#{lrole}
+            </if>
+        </where>
+    </select>
+
+
+    <insert id="insertLiaison" parameterType="Liaison">
+        insert into liaison(laccount,lnumber,lname,lsex,lphone,lrole) values(#{laccount},#{lnumber},#{lname},#{lsex},#{lphone},#{lrole});
+    </insert>
+    
+    <delete id="deleteLiaisonByLnoByLaccount" parameterType="Liaison">
+        delete from liaison where lno=#{lno} and laccount=#{laccount};
+    </delete>
+    
+    <update id="updateLiaison" parameterType="Liaison">
+        update liaison
+        <set>
+          <if test="lname!=null and lname!=''">
+            lname=#{lname},
+          </if>
+          <if test="lsex!=null and lsex!=''">
+            lsex=#{lsex},
+          </if>
+          <if test="lphone!=null and lphone!=''">
+            lphone=#{lphone},
+          </if>
+        </set>
+        where lno=#{lno} and laccount=#{laccount};
+    </update>
+</mapper>

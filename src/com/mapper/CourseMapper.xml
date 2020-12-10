@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.CourseMapper">
+
+    <select id="selectAllCourses" resultType="Course">
+        select * from course;
+    </select>
+
+    <select id="findSelectedCourses" parameterType="String" resultType="StudentCourse">
+        select * from sc_table where saccount=#{saccount};
+    </select>
+
+
+    <select id="selectStudentByCaccount" parameterType="String" resultType="StudentCourse">
+        select * from sc_table where caccount=#{caccount};
+    </select>
+
+    <select id="selectCourseByCaccount" parameterType="String" resultType="Course">
+        select * from course where caccount=#{caccount};
+    </select>
+
+    <select id="selectCoursesByTaccount" parameterType="String" resultType="Course">
+        select * from course where taccount=#{taccount};
+    </select>
+
+    <insert id="insertSc_table" parameterType="StudentCourse">
+        insert into sc_table(saccount,caccount) values(#{saccount},#{caccount});
+    </insert>
+
+    <insert id="insertCourse" parameterType="Course">
+        insert into course(caccount,cname,taccount,cteacher) values(#{caccount},#{cname},#{taccount},#{cteacher});
+    </insert>
+
+    <delete id="deleteSc_table" parameterType="StudentCourse">
+        delete from sc_table where saccount=#{saccount} and caccount=#{caccount};
+    </delete>
+
+    <delete id="deleteSc_tableByCaccount" parameterType="String">
+        delete from sc_table where caccount=#{caccount};
+    </delete>
+
+    <delete id="deleteCourseByCaccount" parameterType="String">
+        delete from course where caccount=#{caccount};
+    </delete>
+
+
+    <select id="selectCoursesByTaccountKey" parameterType="Course" resultType="Course">
+        <bind name="cname" value="'%'+cname+'%'" />
+        select * from course
+        <where>
+            <if test="cname!=null and cname!=''">
+                and cname like #{cname}
+            </if>
+            <if test="taccount!=null and taccount!=''">
+                and taccount=#{taccount}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectCoursesByCaccountKey" parameterType="Course" resultType="Course">
+        <bind name="cname" value="'%'+cname+'%'" />
+        select * from course
+        <where>
+            <if test="cname!=null and cname!=''">
+                and cname like #{cname}
+            </if>
+            <if test="caccount!=null and caccount!=''">
+                and caccount=#{caccount}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectCoursesByKey" parameterType="String" resultType="Course">
+        <bind name="cname" value="'%'+_parameter+'%'" />
+        select * from course
+        <where>
+            <if test="_parameter!=null">
+                and cname like #{cname}
+            </if>
+        </where>
+    </select>
+
+</mapper>
